@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bhtjo374k3juq" path="res://Scripts/Paddle.gd" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://bwwaqjmb3kl24" path="res://Assets/Sprites/Ball.png" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://rv18cac3058j" path="res://Scripts/Ball.gd" id="3_3dryh"]
+[ext_resource type="Theme" uid="uid://bh1vgenc106mm" path="res://Default Theme.tres" id="5_wowpa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
 size = Vector2(8, 32)
@@ -25,7 +26,8 @@ normal = Vector2(0, 1)
 [node name="Game Logic" type="Node" parent="." unique_id=18689793]
 
 [node name="Paddle - Left" type="CharacterBody2D" parent="Game Logic" unique_id=330193225]
-position = Vector2(10, 240)
+position = Vector2(20, 240)
+scale = Vector2(1, 1.5)
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_wrm1d")
@@ -38,7 +40,8 @@ texture = ExtResource("1_ebmjs")
 shape = SubResource("RectangleShape2D_qxrlw")
 
 [node name="Paddle - Right" type="CharacterBody2D" parent="Game Logic" unique_id=1538680463]
-position = Vector2(630, 240)
+position = Vector2(620, 240)
+scale = Vector2(1, 1.5)
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_wrm1d")
@@ -96,3 +99,20 @@ offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.39215687)
+
+[node name="LeftScore" type="Label" parent="UI" unique_id=1092053539]
+offset_top = 8.0
+offset_right = 322.0
+offset_bottom = 71.0
+theme = ExtResource("5_wowpa")
+text = "0"
+horizontal_alignment = 1
+
+[node name="RightScore" type="Label" parent="UI" unique_id=1816478366]
+offset_left = 321.0
+offset_top = 8.0
+offset_right = 640.0
+offset_bottom = 71.0
+theme = ExtResource("5_wowpa")
+text = "0"
+horizontal_alignment = 1
