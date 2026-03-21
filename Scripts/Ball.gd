@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var move_speed : int = 150
+var speed_increase : float = 1.05
 
 signal collision_wall
 signal collision_paddle
@@ -26,6 +27,11 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		# Determine bounce angle based on collision object
 		velocity = velocity.bounce(collision.get_normal())
+		# Speed up on paddle hits
+		var collider = collision.get_collider()
+		if collider is Node:
+			if collider.is_in_group("Paddles"):
+				velocity *= speed_increase
 		_handle_collision_audio(collision)
 
 func _handle_collision_audio(collision : KinematicCollision2D) -> void:
