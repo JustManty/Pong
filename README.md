@@ -4,9 +4,9 @@ Pong was the first widely successful arcade game. It was released in 1972, and s
 You don’t have to make this from computer parts, of course! With a modern engine, this should be a fairly simple start.
 
 > ***Difficulty***
-> 
+>
 > Complexity&emsp;&emsp;&emsp;&emsp;&emsp;0.5 / 5
-> 
+>
 > Scope&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;&emsp;0.5 / 5
 
 #### Goals:
@@ -16,9 +16,9 @@ You don’t have to make this from computer parts, of course! With a modern engi
 - [x] Detect when the ball leaves the playfield. Assign a point to the player who scored.
 - [x] Track and display the score for each player.
 #### Stretch goals:
-- Write an AI script that can follow the ball so you can play with only one player.
-*Hint: Following the ball with a paddle is easy, but it makes the opponent impossible to beat. You might want to make the AI less than perfect somehow.*
-- Add a menu and allow the player to reset the game.
+- [ ] Write an AI script that can follow the ball so you can play with only one player.
+  - *Hint: Following the ball with a paddle is easy, but it makes the opponent impossible to beat. You might want to make the AI less than perfect somehow.*
+- [ ]Add a menu and allow the player to reset the game.
 - [x] Add some basic sounds. Play a sound every time the ball collides with something, and every time a player scores.
 
 [^1]: This description was taken directly from the 20 Games Challenge found at the title link above.
