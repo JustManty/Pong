@@ -21,7 +21,7 @@ You don’t have to make this from computer parts, of course! With a modern engi
 - [ ] Add a menu and allow the player to reset the game.
 - [x] Add some basic sounds. Play a sound every time the ball collides with something, and every time a player scores.
 ### Personal goals:
-- [ ] Add increasing difficulty as the game goes on
+- [x] Add increasing difficulty as the game goes on
 - [ ] Add additional control to the ball's bounce angle (i.e. hitting the ball with the edge of the paddle allows the player to direct the ball's trajectory)
 
 [^1]: This description was taken directly from the 20 Games Challenge found at the title link above.
