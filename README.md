@@ -18,7 +18,7 @@ You don’t have to make this from computer parts, of course! With a modern engi
 #### Stretch goals:
 - [ ] Write an AI script that can follow the ball so you can play with only one player.
   - *Hint: Following the ball with a paddle is easy, but it makes the opponent impossible to beat. You might want to make the AI less than perfect somehow.*
-- [ ]Add a menu and allow the player to reset the game.
+- [ ] Add a menu and allow the player to reset the game.
 - [x] Add some basic sounds. Play a sound every time the ball collides with something, and every time a player scores.
 
 [^1]: This description was taken directly from the 20 Games Challenge found at the title link above.
