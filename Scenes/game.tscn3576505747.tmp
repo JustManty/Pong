@@ -41,6 +41,7 @@ script = ExtResource("1_i6g32")
 [node name="Paddle - Left" type="CharacterBody2D" parent="Game Logic" unique_id=330193225 groups=["Paddles"]]
 position = Vector2(20, 240)
 scale = Vector2(1, 1.5)
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_wrm1d")
 player = 1
@@ -54,6 +55,7 @@ shape = SubResource("RectangleShape2D_qxrlw")
 [node name="Paddle - Right" type="CharacterBody2D" parent="Game Logic" unique_id=1538680463 groups=["Paddles"]]
 position = Vector2(620, 240)
 scale = Vector2(1, 1.5)
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_wrm1d")
 player = 2
