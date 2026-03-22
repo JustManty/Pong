@@ -11,4 +11,3 @@ func _ready() -> void:
 func _update_score(score : Vector2i) -> void:
 	left_score.text = str(score.x)
 	right_score.text = str(score.y)
-	print_debug("_score")

@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var ball: CharacterBody2D = $"../Ball"
 @onready var paddle_up_action_name : String = "p" + str(player) + "_paddle_up"
 @onready var paddle_down_action_name : String = "p" + str(player) + "_paddle_down"
+@onready var _top_edge : float = self.global_position.y - ($Sprite2D.texture.get_height() / 2)
+@onready var _bottom_edge : float = self.global_position.y + ($Sprite2D.texture.get_height() / 2)
+@onready var _center : float = self.global_position.y
 
 var move_speed : int = 250
 var maximum_allowed_distance_from_ball : int = 10
@@ -35,3 +38,12 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 	
 	move_and_slide()
+
+func get_top_edge() -> float:
+	return _top_edge
+
+func get_bottom_edge() -> float:
+	return _bottom_edge
+
+func get_center() -> float:
+	return _center

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var move_speed : int = 150
 var speed_increase : float = 1.05
-var angle_modifier : float = 15
+var angle_impact : float = 10
 
 signal collision_wall
 signal collision_paddle
@@ -26,19 +26,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
-		var debug_string : String = "Entry Velocity: " + str(velocity)
 		var collider = collision.get_collider()
-		# Determine bounce angle based on collision object
-		velocity = velocity.bounce(collision.get_normal())
-		debug_string += "  ->  Post-Bounce Velocity: " + str(velocity)
-		velocity.y = angle_modifier * (self.global_position.y - collider.global_position.y)
-		debug_string += "  ->  Angle-Adjusted Velocity: " + str(velocity)
-		# Speed up on paddle hits
 		if collider is Node:
-			if collider.is_in_group("Paddles"):
-				velocity.x *= speed_increase
-				debug_string += "  ->  Speed-Adjusted Velocity: " + str(velocity)
-				print_debug(debug_string + "\nBall Y Position: " + str(self.global_position.y) + "  |  Paddle Y Position: " + str(collider.global_position.y))
+			_calculate_bounce_angle(collider)
 		_handle_collision_audio(collision)
 
 func _handle_collision_audio(collision : KinematicCollision2D) -> void:
@@ -48,3 +38,17 @@ func _handle_collision_audio(collision : KinematicCollision2D) -> void:
 			collision_paddle.emit(self)
 		if collider.is_in_group("Walls"):
 			collision_wall.emit(self)
+
+func _calculate_bounce_angle(collision_node : Node) -> void:
+	if collision_node.is_in_group("Walls"):
+		velocity.y *= -1
+	elif collision_node.is_in_group("Paddles"):
+		var max_distance : float = abs(collision_node.get_center() - collision_node.get_bottom_edge())
+		var actual_distance : float = abs(self.global_position.y - collision_node.get_center())
+		var actual_impact : float = (actual_distance / max_distance) * angle_impact
+		if collision_node.get_center() < self.global_position.y:
+			velocity.y += actual_impact
+		else:
+			velocity.y -= actual_impact
+		velocity.x *= -1
+	pass
