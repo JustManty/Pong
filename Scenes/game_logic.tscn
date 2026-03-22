@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bm0tcbiklyorl"]
+
+[ext_resource type="PackedScene" uid="uid://3t4d83ye0fh3" path="res://Scenes/paddle.tscn" id="1_swm6j"]
+[ext_resource type="PackedScene" uid="uid://dy61ubpbftf7w" path="res://Scenes/ball.tscn" id="2_esh7n"]
+[ext_resource type="AudioStream" uid="uid://cwnbrx8nsjx6e" path="res://Assets/Sounds/Score.wav" id="3_aoada"]
+[ext_resource type="Script" uid="uid://c0fioc0hunajv" path="res://Scripts/SignalTriggeredAudio.gd" id="4_xsymc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wrm1d"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dryh"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wrm1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
+size = Vector2(20, 480)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
+size = Vector2(20, 480)
+
+[node name="Game Logic" type="Node" unique_id=1211050994]
+
+[node name="Paddle - Left" parent="." unique_id=986049789 instance=ExtResource("1_swm6j")]
+position = Vector2(20, 240)
+
+[node name="Paddle - Right" parent="." unique_id=52383534 instance=ExtResource("1_swm6j")]
+position = Vector2(620, 240)
+player = 2
+use_ai = true
+
+[node name="Ball" parent="." unique_id=495547371 instance=ExtResource("2_esh7n")]
+position = Vector2(320, 240)
+
+[node name="Wall - Top" type="StaticBody2D" parent="." unique_id=1781987446 groups=["Walls"]]
+position = Vector2(320, 0)
+physics_material_override = SubResource("PhysicsMaterial_wrm1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall - Top" unique_id=1937438660 groups=["Walls"]]
+shape = SubResource("WorldBoundaryShape2D_3dryh")
+
+[node name="Wall - Bottom" type="StaticBody2D" parent="." unique_id=757031083 groups=["Walls"]]
+position = Vector2(320, 480)
+physics_material_override = SubResource("PhysicsMaterial_wrm1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall - Bottom" unique_id=71550059 groups=["Walls"]]
+shape = SubResource("WorldBoundaryShape2D_wrm1d")
+
+[node name="Goal - Left" type="Area2D" parent="." unique_id=19346972 groups=["Goals"]]
+position = Vector2(4, 240)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal - Left" unique_id=1087357794]
+shape = SubResource("RectangleShape2D_wowpa")
+
+[node name="Audio" type="Node" parent="Goal - Left" unique_id=1178796770]
+
+[node name="Score" type="AudioStreamPlayer" parent="Goal - Left/Audio" unique_id=90725010]
+stream = ExtResource("3_aoada")
+script = ExtResource("4_xsymc")
+
+[node name="Goal - Right" type="Area2D" parent="." unique_id=36251538 groups=["Goals"]]
+position = Vector2(636, 240)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal - Right" unique_id=354618544]
+shape = SubResource("RectangleShape2D_i6g32")
+
+[node name="Audio" type="Node" parent="Goal - Right" unique_id=1168696488]
+
+[node name="Score" type="AudioStreamPlayer" parent="Goal - Right/Audio" unique_id=281960348]
+stream = ExtResource("3_aoada")
+script = ExtResource("4_xsymc")
+
+[connection signal="body_entered" from="Goal - Left" to="Goal - Left/Audio/Score" method="do_trigger"]
+[connection signal="body_entered" from="Goal - Right" to="Goal - Right/Audio/Score" method="do_trigger"]

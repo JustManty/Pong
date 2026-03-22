@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dvpq10g70pluo"]
+
+[ext_resource type="Script" uid="uid://cbgtb0bfwheqq" path="res://Scripts/UI.gd" id="1_qdvrb"]
+[ext_resource type="Theme" uid="uid://bh1vgenc106mm" path="res://Default Theme.tres" id="2_nf4gj"]
+
+[node name="UI" type="CanvasLayer" unique_id=847781360]
+layer = -1
+script = ExtResource("1_qdvrb")
+
+[node name="Background" type="ColorRect" parent="." unique_id=54182644]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Central Boundary" type="ColorRect" parent="." unique_id=1199198641]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.39215687)
+
+[node name="Upper Wall" type="ColorRect" parent="." unique_id=1752199212]
+custom_minimum_size = Vector2(0, 1)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Lower Wall" type="ColorRect" parent="." unique_id=1320016297]
+custom_minimum_size = Vector2(0, 1)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftScore" type="Label" parent="." unique_id=281923906]
+offset_top = 8.0
+offset_right = 322.0
+offset_bottom = 71.0
+theme = ExtResource("2_nf4gj")
+text = "0"
+horizontal_alignment = 1
+
+[node name="RightScore" type="Label" parent="." unique_id=1785333689]
+offset_left = 321.0
+offset_top = 8.0
+offset_right = 640.0
+offset_bottom = 71.0
+theme = ExtResource("2_nf4gj")
+text = "0"
+horizontal_alignment = 1
