@@ -44,7 +44,6 @@ scale = Vector2(1, 1.5)
 motion_mode = 1
 script = ExtResource("1_wrm1d")
 player = 1
-use_ai = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Game Logic/Paddle - Left" unique_id=2108526799 groups=["Paddles"]]
 texture = ExtResource("1_ebmjs")
