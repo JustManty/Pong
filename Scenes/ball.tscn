@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dy61ubpbftf7w"]
+
+[ext_resource type="Script" uid="uid://rv18cac3058j" path="res://Scripts/Ball.gd" id="1_aw2wy"]
+[ext_resource type="Texture2D" uid="uid://bwwaqjmb3kl24" path="res://Assets/Sprites/Ball.png" id="2_vblhy"]
+[ext_resource type="AudioStream" uid="uid://bpxlo0qvp7r76" path="res://Assets/Sounds/Ball Bounce.wav" id="3_31idh"]
+[ext_resource type="Script" uid="uid://c0fioc0hunajv" path="res://Scripts/SignalTriggeredAudio.gd" id="4_hk63f"]
+[ext_resource type="AudioStream" uid="uid://dinu0rel3xbny" path="res://Assets/Sounds/Ball Hit.wav" id="5_vm4s8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmjs"]
+size = Vector2(8, 8)
+
+[node name="Ball" type="CharacterBody2D" unique_id=495547371]
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_aw2wy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1830919514]
+texture = ExtResource("2_vblhy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823447585]
+shape = SubResource("RectangleShape2D_ebmjs")
+
+[node name="Audio" type="Node" parent="." unique_id=560463202]
+
+[node name="Ball Bounce" type="AudioStreamPlayer" parent="Audio" unique_id=1350628099]
+stream = ExtResource("3_31idh")
+script = ExtResource("4_hk63f")
+
+[node name="Ball Hit" type="AudioStreamPlayer" parent="Audio" unique_id=748530370]
+stream = ExtResource("5_vm4s8")
+script = ExtResource("4_hk63f")
+
+[node name="InitialTimer" type="Timer" parent="." unique_id=1222600389]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="collision_paddle" from="." to="Audio/Ball Hit" method="do_trigger"]
+[connection signal="collision_wall" from="." to="Audio/Ball Bounce" method="do_trigger"]
+[connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]

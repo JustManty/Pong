@@ -7,22 +7,6 @@ var angle_impact : float = 10
 signal collision_wall
 signal collision_paddle
 
-func _ready() -> void:
-	randomize()
-	
-	# Determine a horizontal angle
-	var x = 1
-	if(randi_range(0, 1) == 1):
-		x *= -1
-	
-	# Determine a vertical angle.  Prevent pure vertical
-	var y = randf_range(0, 0.9)
-	if(randi_range(0, 1) == 1):
-		y *= -1
-	
-	velocity = Vector2(x, y)
-	velocity *= move_speed
-
 func _physics_process(delta: float) -> void:
 	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
 	if collision:
@@ -52,3 +36,23 @@ func _calculate_bounce_angle(collision_node : Node) -> void:
 			velocity.y -= actual_impact
 		velocity.x *= -1
 	pass
+
+func _create_initial_velocity() -> void:
+	randomize()
+	
+	# Determine a horizontal angle
+	var x = 1
+	if(randi_range(0, 1) == 1):
+		x *= -1
+	
+	# Determine a vertical angle.  Prevent pure vertical
+	var y = randf_range(0, 0.9)
+	if(randi_range(0, 1) == 1):
+		y *= -1
+	
+	velocity = Vector2(x, y)
+	velocity *= move_speed
+	
+
+func _on_initial_timer_timeout() -> void:
+	_create_initial_velocity()

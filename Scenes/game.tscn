@@ -1,22 +1,12 @@
 [gd_scene format=3 uid="uid://dac07rbr8mpif"]
 
-[ext_resource type="Texture2D" uid="uid://df0660t63w2m7" path="res://Assets/Sprites/Paddle.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://c2ij2s2x8svq6" path="res://Scripts/Game.gd" id="1_i6g32"]
-[ext_resource type="Script" uid="uid://bhtjo374k3juq" path="res://Scripts/Paddle.gd" id="1_wrm1d"]
-[ext_resource type="Texture2D" uid="uid://bwwaqjmb3kl24" path="res://Assets/Sprites/Ball.png" id="2_qxrlw"]
-[ext_resource type="Script" uid="uid://rv18cac3058j" path="res://Scripts/Ball.gd" id="3_3dryh"]
+[ext_resource type="PackedScene" uid="uid://3t4d83ye0fh3" path="res://Scenes/paddle.tscn" id="2_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://dy61ubpbftf7w" path="res://Scenes/ball.tscn" id="3_v158k"]
 [ext_resource type="Theme" uid="uid://bh1vgenc106mm" path="res://Default Theme.tres" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://cbgtb0bfwheqq" path="res://Scripts/UI.gd" id="6_1l0tm"]
-[ext_resource type="AudioStream" uid="uid://bpxlo0qvp7r76" path="res://Assets/Sounds/Ball Bounce.wav" id="6_o5yvi"]
 [ext_resource type="Script" uid="uid://c0fioc0hunajv" path="res://Scripts/SignalTriggeredAudio.gd" id="7_rku1e"]
-[ext_resource type="AudioStream" uid="uid://dinu0rel3xbny" path="res://Assets/Sounds/Ball Hit.wav" id="8_rfjv2"]
 [ext_resource type="AudioStream" uid="uid://cwnbrx8nsjx6e" path="res://Assets/Sounds/Score.wav" id="9_1phco"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
-size = Vector2(8, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmjs"]
-size = Vector2(8, 8)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wrm1d"]
 friction = 0.0
@@ -38,55 +28,16 @@ script = ExtResource("1_i6g32")
 
 [node name="Game Logic" type="Node" parent="." unique_id=18689793]
 
-[node name="Paddle - Left" type="CharacterBody2D" parent="Game Logic" unique_id=330193225 groups=["Paddles"]]
+[node name="Paddle - Left" parent="Game Logic" unique_id=986049789 instance=ExtResource("2_1l0tm")]
 position = Vector2(20, 240)
-scale = Vector2(1, 1.5)
-motion_mode = 1
-script = ExtResource("1_wrm1d")
-player = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Game Logic/Paddle - Left" unique_id=2108526799 groups=["Paddles"]]
-texture = ExtResource("1_ebmjs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Logic/Paddle - Left" unique_id=1404653565 groups=["Paddles"]]
-shape = SubResource("RectangleShape2D_qxrlw")
-
-[node name="Paddle - Right" type="CharacterBody2D" parent="Game Logic" unique_id=1538680463 groups=["Paddles"]]
+[node name="Paddle - Right" parent="Game Logic" unique_id=207984319 instance=ExtResource("2_1l0tm")]
 position = Vector2(620, 240)
-scale = Vector2(1, 1.5)
-motion_mode = 1
-script = ExtResource("1_wrm1d")
 player = 2
 use_ai = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Game Logic/Paddle - Right" unique_id=440827126 groups=["Paddles"]]
-texture = ExtResource("1_ebmjs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Logic/Paddle - Right" unique_id=1405648966 groups=["Paddles"]]
-shape = SubResource("RectangleShape2D_qxrlw")
-
-[node name="Ball" type="CharacterBody2D" parent="Game Logic" unique_id=721232578]
+[node name="Ball" parent="Game Logic" unique_id=495547371 instance=ExtResource("3_v158k")]
 position = Vector2(320, 240)
-collision_layer = 2
-collision_mask = 3
-motion_mode = 1
-script = ExtResource("3_3dryh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Game Logic/Ball" unique_id=517328103]
-texture = ExtResource("2_qxrlw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Game Logic/Ball" unique_id=110706863]
-shape = SubResource("RectangleShape2D_ebmjs")
-
-[node name="Audio" type="Node" parent="Game Logic/Ball" unique_id=1090566198]
-
-[node name="Ball Bounce" type="AudioStreamPlayer" parent="Game Logic/Ball/Audio" unique_id=1338908062]
-stream = ExtResource("6_o5yvi")
-script = ExtResource("7_rku1e")
-
-[node name="Ball Hit" type="AudioStreamPlayer" parent="Game Logic/Ball/Audio" unique_id=2127190967]
-stream = ExtResource("8_rfjv2")
-script = ExtResource("7_rku1e")
 
 [node name="Wall - Top" type="StaticBody2D" parent="Game Logic" unique_id=1886807031 groups=["Walls"]]
 position = Vector2(320, 0)
@@ -184,8 +135,6 @@ theme = ExtResource("5_wowpa")
 text = "0"
 horizontal_alignment = 1
 
-[connection signal="collision_paddle" from="Game Logic/Ball" to="Game Logic/Ball/Audio/Ball Hit" method="do_trigger"]
-[connection signal="collision_wall" from="Game Logic/Ball" to="Game Logic/Ball/Audio/Ball Bounce" method="do_trigger"]
 [connection signal="body_entered" from="Game Logic/Goal - Left" to="." method="_on_goal_left_body_entered"]
 [connection signal="body_entered" from="Game Logic/Goal - Left" to="Game Logic/Goal - Left/Audio/Score" method="do_trigger"]
 [connection signal="body_entered" from="Game Logic/Goal - Right" to="." method="_on_goal_right_body_entered"]
