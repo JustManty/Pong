@@ -26,15 +26,18 @@ func _physics_process(_delta: float) -> void:
 			# Eliminate Movement
 			velocity = Vector2.ZERO
 	else:
-		# Handle Vertical Movement:
-		if ball.position.y < position.y and abs(ball.position.y - position.y) > maximum_allowed_distance_from_ball:
-			# Set Upward Movement
-			velocity = Vector2(0, -1 * move_speed)
-		elif ball.position.y > position.y and abs(ball.position.y - position.y) > maximum_allowed_distance_from_ball:
-			# Set Downward Movement
-			velocity = Vector2(0, move_speed)
+		if(ball):
+			# Handle Vertical Movement:
+			if ball.position.y < position.y and abs(ball.position.y - position.y) > maximum_allowed_distance_from_ball:
+				# Set Upward Movement
+				velocity = Vector2(0, -1 * move_speed)
+			elif ball.position.y > position.y and abs(ball.position.y - position.y) > maximum_allowed_distance_from_ball:
+				# Set Downward Movement
+				velocity = Vector2(0, move_speed)
+			else:
+				# Eliminate Movement
+				velocity = Vector2.ZERO
 		else:
-			# Eliminate Movement
 			velocity = Vector2.ZERO
 	
 	move_and_slide()

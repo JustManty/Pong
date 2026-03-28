@@ -1,3 +1,4 @@
+class_name Ball
 extends CharacterBody2D
 
 var move_speed : int = 150
