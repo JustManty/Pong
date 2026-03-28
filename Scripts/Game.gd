@@ -23,19 +23,18 @@ func _process(_delta: float) -> void:
 					game_ui.visible = true
 				get_tree().paused = false
 			else:
-				get_tree().paused = true
 				if game_logic:
 					game_logic.visible = false
 				if game_ui:
 					game_logic.visible = false
 				var menu = game_menu_scene.instantiate()
-				await menu.ready
 				menu.set_state(_game_started)
 				add_child(menu)
 				if not menu.game_reset.is_connected(_on_new_game):
 					menu.game_reset.connect(_on_new_game)
 				if not menu.game_resumed.is_connected(_on_resume_game):
 					menu.game_resumed.connect(_on_resume_game)
+				get_tree().paused = true
 
 func _on_new_game() -> void:
 	var menu = get_node_or_null("Menu") as MenuUI
@@ -44,7 +43,7 @@ func _on_new_game() -> void:
 	await menu.tree_exited
 	ui.visible = true
 	score = Vector2.ZERO
-	update_score.emit()
+	update_score.emit(score)
 	get_tree().paused = false
 	_reset_game_logic()
 
