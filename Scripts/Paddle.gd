@@ -13,7 +13,7 @@ extends CharacterBody2D
 var move_speed : int = 250
 var maximum_allowed_distance_from_ball : int = 10
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if(use_ai == false):
 		# Handle Vertical Movement:
 		if Input.is_action_pressed(paddle_up_action_name):
