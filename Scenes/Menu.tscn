@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bg37r1oqdhr7q"]
+
+[ext_resource type="Script" uid="uid://ddda84cuwblcn" path="res://Scripts/MenuUI.gd" id="1_6pedr"]
+[ext_resource type="FontFile" uid="uid://bpw2ed8cbsq70" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_syfuq"]
+[ext_resource type="AudioStream" uid="uid://dinu0rel3xbny" path="res://Assets/Sounds/Ball Hit.wav" id="3_syfuq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wfhf6"]
+font = ExtResource("2_syfuq")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2c3o"]
+font = ExtResource("2_syfuq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ma218"]
+font = ExtResource("2_syfuq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_idohh"]
+font = ExtResource("2_syfuq")
+
+[node name="Menu" type="CanvasLayer" unique_id=1150280057]
+script = ExtResource("1_6pedr")
+
+[node name="Background" type="ColorRect" parent="." unique_id=336532665]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MenuContainer" type="VBoxContainer" parent="." unique_id=245186146]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -45.5
+offset_right = 72.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="MenuContainer" unique_id=1157244959]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+text = "PONG"
+label_settings = SubResource("LabelSettings_wfhf6")
+horizontal_alignment = 1
+
+[node name="MenuOptions" type="VBoxContainer" parent="MenuContainer" unique_id=470177889]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Resume" type="PanelContainer" parent="MenuContainer/MenuOptions" unique_id=914958827]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuContainer/MenuOptions/Resume" unique_id=290543736]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="MenuContainer/MenuOptions/Resume" unique_id=58070946]
+layout_mode = 2
+text = "Resume"
+label_settings = SubResource("LabelSettings_s2c3o")
+horizontal_alignment = 1
+
+[node name="New Game" type="PanelContainer" parent="MenuContainer/MenuOptions" unique_id=270109254]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuContainer/MenuOptions/New Game" unique_id=603139097]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="MenuContainer/MenuOptions/New Game" unique_id=2008331690]
+layout_mode = 2
+text = "New Game"
+label_settings = SubResource("LabelSettings_ma218")
+horizontal_alignment = 1
+
+[node name="Quit Game" type="PanelContainer" parent="MenuContainer/MenuOptions" unique_id=854871997]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuContainer/MenuOptions/Quit Game" unique_id=1503783028]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="MenuContainer/MenuOptions/Quit Game" unique_id=244825998]
+layout_mode = 2
+text = "Quit Game"
+label_settings = SubResource("LabelSettings_idohh")
+
+[node name="BlipSound" type="AudioStreamPlayer" parent="." unique_id=245712300]
+stream = ExtResource("3_syfuq")

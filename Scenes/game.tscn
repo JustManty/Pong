@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://dac07rbr8mpif"]
 
 [ext_resource type="Script" uid="uid://c2ij2s2x8svq6" path="res://Scripts/Game.gd" id="1_i6g32"]
+[ext_resource type="PackedScene" uid="uid://bg37r1oqdhr7q" path="res://Scenes/Menu.tscn" id="2_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dvpq10g70pluo" path="res://Scenes/ui.tscn" id="3_3dryh"]
 
 [node name="Game" type="Node2D" unique_id=333457182]
 script = ExtResource("1_i6g32")
 
+[node name="Menu" parent="." unique_id=1150280057 instance=ExtResource("2_wrm1d")]
+
 [node name="UI" parent="." unique_id=847781360 instance=ExtResource("3_3dryh")]
+visible = false
+
+[connection signal="game_reset" from="Menu" to="." method="_on_new_game"]
+[connection signal="game_resumed" from="Menu" to="." method="_on_resume_game"]

@@ -20,7 +20,7 @@ size = Vector2(20, 480)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
 size = Vector2(20, 480)
 
-[node name="Game Logic" type="Node" unique_id=1211050994]
+[node name="Game Logic" type="Node2D" unique_id=1943518944]
 
 [node name="Paddle - Left" parent="." unique_id=986049789 instance=ExtResource("1_swm6j")]
 position = Vector2(20, 240)
